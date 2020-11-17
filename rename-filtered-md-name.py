@@ -20,7 +20,7 @@ def getFiles(dir, suffix):  # 查找根目录，文件后缀
     return res
 
 
-for file in getFiles("f:/workspace-note/note-web/edu/", '.md'):  # =>查找以.md结尾的文件
+for file in getFiles("f:/workspace-note/note-web/planb/", '.md'):  # =>查找以.md结尾的文件
     file_name = get_file_name(file)
     if not file.find("README") > -1:
         # print(file_name)
