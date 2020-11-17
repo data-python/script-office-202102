@@ -1,5 +1,5 @@
 import os
-file_path = 'e:\\table\\产品销售表' 
+file_path = './产品销售表'
 file_list = os.listdir(file_path)
 old_book_name = '销售表'
 new_book_name = '分部产品销售表'

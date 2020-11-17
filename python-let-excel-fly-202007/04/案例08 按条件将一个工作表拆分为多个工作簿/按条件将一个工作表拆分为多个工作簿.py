@@ -1,5 +1,5 @@
 import xlwings as xw
-file_path = 'e:\\table\\产品统计表.xlsx'
+file_path = './产品统计表.xlsx'
 sheet_name = '统计表'
 app = xw.App(visible = True, add_book = False)
 workbook = app.books.open(file_path)

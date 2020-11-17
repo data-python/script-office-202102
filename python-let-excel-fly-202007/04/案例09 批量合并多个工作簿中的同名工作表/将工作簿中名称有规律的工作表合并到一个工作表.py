@@ -1,6 +1,6 @@
 import os
 import xlwings as xw
-workbook_name = 'e:\\table\\采购表.xlsx'
+workbook_name = './采购表.xlsx'
 sheet_names = [str(sheet)+'月' for sheet in range(1,7)]
 new_sheet_name = '上半年统计表'
 app = xw.App(visible = False, add_book = False)

@@ -1,5 +1,5 @@
 import xlwings as xw
-workbook_name = 'e:\\table\\产品销售表.xlsx'  
+workbook_name = './产品销售表.xlsx'
 app = xw.App(visible = False, add_book = False)
 header = None    
 all_data = []  

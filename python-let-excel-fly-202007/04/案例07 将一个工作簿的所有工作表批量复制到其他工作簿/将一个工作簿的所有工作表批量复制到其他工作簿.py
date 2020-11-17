@@ -1,9 +1,9 @@
 import os
 import xlwings as xw
 app = xw.App(visible = False, add_book = False) 
-file_path = 'e:\\table\\销售表'   
+file_path = './销售表'
 file_list = os.listdir(file_path)  
-workbook = app.books.open('e:\\table\\信息表.xlsx')  
+workbook = app.books.open('./信息表.xlsx')
 worksheet = workbook.sheets
 for i in file_list:  
     if os.path.splitext(i)[1] == '.xlsx':  

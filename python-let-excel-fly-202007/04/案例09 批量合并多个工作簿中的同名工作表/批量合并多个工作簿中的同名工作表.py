@@ -1,6 +1,6 @@
 import os
 import xlwings as xw
-file_path = 'e:\\table\\销售统计'
+file_path = './销售统计'
 file_list = os.listdir(file_path)
 sheet_name = '产品销售统计'
 app = xw.App(visible = False, add_book = False)
@@ -22,5 +22,5 @@ new_worksheet = new_workbook.sheets.add(sheet_name)
 new_worksheet['A1'].value = header
 new_worksheet['A2'].value = all_data
 new_worksheet.autofit()
-new_workbook.save('e:\\table\\上半年产品销售统计表.xlsx')
+new_workbook.save('./上半年产品销售统计表.xlsx')
 app.quit()

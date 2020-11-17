@@ -1,6 +1,6 @@
 import os
 import xlwings as xw
-file_path = 'e:\\table\\信息表'
+file_path = './信息表'
 file_list = os.listdir(file_path)
 old_sheet_name = 'Sheet1'
 new_sheet_name = '员工信息'

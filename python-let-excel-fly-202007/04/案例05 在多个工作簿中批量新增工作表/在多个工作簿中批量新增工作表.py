@@ -1,6 +1,6 @@
 import os
 import xlwings as xw
-file_path = 'e:\\table\\销售表'
+file_path = './销售表'
 file_list = os.listdir(file_path)
 sheet_name = '产品销售区域'
 app = xw.App(visible = False, add_book = False)
