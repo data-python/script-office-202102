@@ -1,3 +1,4 @@
+# https://github.com/injetlee/Python
 import random
 import time
 
