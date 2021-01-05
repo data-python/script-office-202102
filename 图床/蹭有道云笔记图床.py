@@ -74,7 +74,8 @@ class MainWindow:
         if getRecURL() is not None:
             self.text_name.insert("1.0", getRecURL())
         '''
-        self.text_name.insert("1.0", "http://note.youdao.com/noteshare?id=64555904ce9f98d61db1e5e07f91564c&sub=24810946B5AF400F887A6A0F50F2B75F")
+        self.text_name.insert("1.0",
+                              "http://note.youdao.com/noteshare?id=64555904ce9f98d61db1e5e07f91564c&sub=24810946B5AF400F887A6A0F50F2B75F")
 
         self.text_sex = Text(self.frame, height="1", width=30)
 
