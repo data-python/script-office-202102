@@ -65,12 +65,10 @@ for key,value in data.items():
     # print(value)
     for key2, value2 in value.items():
         # print(value2)
-        workbook.sheets['教师课程安排-转置表'].range('A' + str(i)).value= value2
         for index in range(0, len(value2)):
             print(value2[index][2:])
             # new_worksheet2.range('A' + str(i)).expand('table').value = value2[index][2:]
             # new_worksheet2[f'A{i}'].options(index = False).value = [1,32]
-
             # workbook.sheets['教师课程安排-转置表'].value = value2[index][2:]
             i = i+1
 
