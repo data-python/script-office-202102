@@ -1,16 +1,16 @@
 # https://segmentfault.com/a/1190000018597501
 import pprint
-import pandas as pd
+
+import tablib
 import xlwings as xw
+import pandas as pd
+
+
 
 # 1) 打开Excel
 file_path = './教师课程安排.xlsx'
 sheet_name = 'Sheet2'
-# 会新增工作表add_book需要设为True
-app = xw.App(visible=True, add_book=True)
-app.display_alerts = True
-app.screen_updating = True
-
+app = xw.App(visible = True, add_book = False)
 workbook = app.books.open(file_path)
 worksheet = workbook.sheets[sheet_name]
 
@@ -21,19 +21,19 @@ worksheet = workbook.sheets[sheet_name]
 # 2) 使用pandas读取数据与索引
 data = dict()
 df = pd.read_excel('教师课程安排.xlsx'
-                   , sheet_name="Sheet2"
-                   , index_col=[0, 1])
+                   ,sheet_name="Sheet2"
+                   ,index_col=[0,1])
 df.reset_index()
-print(df)
+# print(df)
 
 # 将数据重构后输出到工作表
-temp_worksheet = workbook.sheets.add("中间数据表")
-temp_worksheet['A1'].value = df
+new_worksheet = workbook.sheets.add("输出")
+new_worksheet['A1'].value = df
+print(df)
 
-output_worksheet = workbook.sheets.add("输出结果表")
 
 # 3) 遍历数据, 按照日期+教师名称构建嵌套字典
-value = temp_worksheet.range('A3').expand('table').value
+value = workbook.sheets["输出"].range('A3').expand('table').value
 for i in range(len(value)):
     date_name = value[i][1]
     # 如果没有这个键值, 初始化为字典
@@ -50,31 +50,34 @@ for i in range(len(value)):
 pp = pprint.PrettyPrinter(compact=True)
 pp.pprint(data)
 
-# 4) 输出Excel
-i = 1
-for key, value in data.items():
-    # print(key)
-    output_worksheet[f'A{i}'].options(index=False).value = ["日期: " + key, None, None, None]
-    i = i + 1
-
+# 4) 用tablib临时输出Excel
+list = tablib.Dataset()
+for key,value in data.items():
+    print(key)
+    list.append(("日期: " + key, None,None,None))
     # 加入表头
-    output_worksheet[f'A{i}'].options(index=False).value = ['Time', 'Student', 'TA', 'Classrooms']
-    i = i + 1
+    list.append(('Time', 'Student',	'TA', 'Classrooms'))
 
     for key2, value2 in value.items():
-        # print(key2)
-        output_worksheet[f'A{i}'].options(index=False).value = ['教师: ' + key2, None, None, None]
-        i = i + 1
-
+        print(key2)
+        list.append(('教师: ' + key2, None, None, None))
         for index in range(0, len(value2)):
-            # print(value2[index][2:])
-            output_worksheet[f'A{i}'].options(index=False).value = value2[index][2:]
-            i = i + 1
+            # @todo xlwings目前导出一直会报错，先使用tablib临时输出Excel
+            tup = tuple(value2[index][2:])
+            print(tup)
+            list.append(tup)
 
-    i = i + 1
+    # 加一行空行
+    list.append((None, None, None, None))
+
+
+# 输出excel
+with open('教师课程安排-转置表.xlsx', 'wb') as f: #exl是二进制数据
+    f.write(list.export('xlsx'))
 
 # 保存与关闭
 # workbook.save()
-# workbook.close()
+workbook.close()
+
 # 退出
-# app.quit()
+app.quit()
