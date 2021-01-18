@@ -17,12 +17,6 @@ data = dict()
 # info = worksheet.used_range
 # nrows = info.last_cell.row
 # ncols = info.last_cell.column
-#
-# print("行高")
-# print(nrows)
-# print("列宽")
-# print(ncols)
-
 
 df = pd.read_excel('教师课程安排.xlsx'
                    ,sheet_name="Sheet2"
@@ -39,12 +33,7 @@ print(df)
 
 value = workbook.sheets["输出"].range('A3').expand('table').value
 for i in range(len(value)):
-    # print(i)
-    # print(value[i])
     date_name = value[i][1]
-    # print(teacher_name)
-
-    # print(date_name)
     if date_name not in data:
         data[date_name] = dict()
 
@@ -57,9 +46,6 @@ pp = pprint.PrettyPrinter(compact=True)
 pp.pprint(data)
 
 
-
-
-
 workbook.sheets.add("教师课程安排-转置表")
 i = 0
 list = tablib.Dataset()
@@ -69,11 +55,11 @@ for key,value in data.items():
     list.append(("日期: " + key, None,None,None))
     list.append(('Time', 'Student',	'TA', 'Classrooms'))
 
-
     for key2, value2 in value.items():
         print(key2)
         list.append(('教师: ' + key2, None, None, None))
         for index in range(0, len(value2)):
+            # @todo xlwings目前导出一直会报错
             # print(value2[index][2:])
             # new_worksheet2.range('A' + str(i)).expand('table').value = value2[index][2:]
             # new_worksheet2[f'A{i}'].options(index = False).value = [1,32]
