@@ -10,4 +10,4 @@ for idx, group in data:
     new_worksheet['A1'].options(index = False).value = group 
 workbook.save()
 workbook.close()
-app.quit()
+# app.quit()
