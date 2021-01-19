@@ -28,13 +28,13 @@ df.reset_index()
 print(df)
 
 # 将数据重构后输出到工作表
-temp_origin_worksheet = workbook.sheets.add("中间数据表")
-temp_origin_worksheet['A1'].value = df
+temp_worksheet = workbook.sheets.add("中间数据表")
+temp_worksheet['A1'].value = df
 
 output_worksheet = workbook.sheets.add("输出结果表")
 
 # 3) 遍历数据, 按照日期+教师名称构建嵌套字典
-value = temp_origin_worksheet.range('A3').expand('table').value
+value = temp_worksheet.range('A3').expand('table').value
 for i in range(len(value)):
     date_name = value[i][1]
     # 如果没有这个键值, 初始化为字典

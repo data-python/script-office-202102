@@ -1,3 +1,4 @@
+# 环境 python-v3.7 pandas-v1.1.4 openpyxl-v3.0.5 xlrd-v1.2.0
 # https://segmentfault.com/a/1190000018597501
 import pprint
 
@@ -20,9 +21,11 @@ data = dict()
 rows = dataframe_to_rows(df)
 
 for r_idx, row in enumerate(rows, 1):
+    # print(row)
     if r_idx < 4:
         continue
 
+    # 类似这个格式 @eg [('lorraine', '2021.01.16'), '08:30-10:30', '张赛琪', '徐荧', 'R1']
     date_name = row[0][1]
     # 如果没有这个键值, 初始化为字典
     if date_name not in data:
