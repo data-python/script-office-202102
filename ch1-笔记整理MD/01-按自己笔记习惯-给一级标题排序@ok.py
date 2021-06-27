@@ -21,7 +21,6 @@ class BaseMethod:
             content = fp.read()
         return content
 
-f="F:\\workspace-note\\note-web\\arch\[1-1]course\\2021\\srv\\03-[调查]xxx-2021@vip"
 
 class SortMD:
     def __init__(self, filename):
@@ -51,6 +50,7 @@ class SortMD:
         print(data)
         BaseMethod.write_file(name, data)
 
+f="F:\\workspace-note\\note-web\\arch\[1-1]course\\2021\\srv\\03-[调查]xxx-2021@vip"
 def main():
     md = SortMD(f + ".md")
     md.split_now()
