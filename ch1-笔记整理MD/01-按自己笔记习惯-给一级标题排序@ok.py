@@ -27,7 +27,6 @@ class SortMD:
         # self.filename = filename
         self.content = BaseMethod.read_file(filename)
         self.data = {}
-        self.title = ""
 
     def split_now(self):
         self.content = self.content.replace("---", "")
@@ -36,25 +35,18 @@ class SortMD:
 
         for i in sharp1:
             i = i.lstrip(" ")
-            key = i[0:2]
+            key = i[0:3]
             if key in self.data.keys():
                 self.data[key].append('# '+i.strip('\n').lstrip(" "))
             else:
                 self.data[key] = ['# ' + i.strip('\n').lstrip(" ")]
 
-        # print(self.data)
-        # self.title = self.data
-        # del(self.data[0])
-        # self.data.sort()
-        # self.data['sharp1'].insert(0, title) # 标题部分拿到最前面
-        # print(self.data)
-
     def save2file(self, name):
-        s2 = self.title
+        s2 = ""
         for key in self.data:
             self.data[key].sort()
-            self.data[key].append("---")
-            s2 = s2 + "\n\n" + "\n\n".join(self.data[key])
+            s2 = s2 + ("\n\n" if s2 == "" else "\n\n---\n\n") + "\n\n".join(self.data[key])
+        s2 = s2.lstrip("\n")
         print(s2)
         BaseMethod.write_file(name, s2)
 
@@ -63,7 +55,7 @@ f="F:\\workspace-note\\note-web\\arch\[1-1]course\\2021\\srv\\03-[调查]xxx-202
 def main():
     md = SortMD(f + ".md")
     md.split_now()
-    md.save2file(f + "-output.md")
+    md.save2file(f + ".md")
 
 if __name__ == "__main__":
     main()
