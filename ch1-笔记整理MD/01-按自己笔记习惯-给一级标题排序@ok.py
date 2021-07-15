@@ -35,7 +35,7 @@ class SortMD:
 
         for i in sharp1:
             i = i.lstrip(" ")
-            key = i[0:3]
+            key = i[0:4]
             if key in self.data.keys():
                 self.data[key].append('# '+i.strip('\n').lstrip(" "))
             else:
@@ -50,7 +50,8 @@ class SortMD:
         print(s2)
         BaseMethod.write_file(name, s2)
 
-f="F:\\workspace-note\\note-web\\arch\[1-1]course\\2021\\srv\\03-[调查]xxx-2021@vip"
+# f="F:\\workspace-note\\note-web\\arch\[1-1]course\\2021\\srv\\03-[调查]xxx-2021@vip"
+f="F:\\workspace-note\\note-web\\idx\\[3]service-java\\ch6-compute-xaas\\xaas\\06-[厂商]阿里云@nice"
 
 def main():
     md = SortMD(f + ".md")

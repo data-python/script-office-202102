@@ -20,10 +20,8 @@ def getFiles(dir, suffix):  # 查找根目录，文件后缀
     return res
 
 
-for file in getFiles("f:/workspace-note/note-web/code/", '.md'):  # =>查找以.md结尾的文件
+for file in getFiles("f:/workspace-note/note-web/idx/[4]ui-javascript/ch5-devops-scaffold/template/_case", '.md'):  # =>查找以.md结尾的文件
     file_name = get_file_name(file)
-    if not file.find("README") > -1:
-        # print(file_name)
-        if not file_name.find("@nice") > -1:
-            print(file_name)
-            os.rename(file, file[:-3] + "@nice.md")
+    print(file_name)
+    if file_name.find("[模板]") > -1:
+        os.rename(file, file.replace("[模板]", ""))
