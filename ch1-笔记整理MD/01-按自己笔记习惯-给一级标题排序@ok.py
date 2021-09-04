@@ -36,6 +36,7 @@ class SortMD:
         for i in sharp1:
             i = i.lstrip(" ")
             key = i[0:4]
+            print(key)
             if key in self.data.keys():
                 self.data[key].append('# '+i.strip('\n').lstrip(" "))
             else:
@@ -43,15 +44,18 @@ class SortMD:
 
     def save2file(self, name):
         s2 = ""
-        for key in self.data:
+        for key in sorted(self.data):
+            # print(self.data[key])
             self.data[key].sort()
+            # print(self.data[key])
             s2 = s2 + ("\n\n" if s2 == "" else "\n\n---\n\n") + "\n\n".join(self.data[key])
+
         s2 = s2.lstrip("\n")
         print(s2)
         BaseMethod.write_file(name, s2)
 
 # f="F:\\workspace-note\\note-web\\arch\[1-1]course\\2021\\srv\\03-[调查]xxx-2021@vip"
-f="F:\\workspace-note\\note-web\\idx\\[3]service-java\\ch6-compute-xaas\\xaas\\06-[厂商]阿里云@nice"
+f="e:\\workspace-note\\note\\idx\\[1]tools-rapier\\[1-3]origin-library\\book\\_case\\08-[书单]Java@nice"
 
 def main():
     md = SortMD(f + ".md")
