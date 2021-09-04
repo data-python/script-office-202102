@@ -44,10 +44,14 @@ class SortMD:
 
     def save2file(self, name):
         s2 = ""
+
+        for key in self.data:
+            s2 = s2 + ("\n\n" if s2 == "" else "\n\n---\n\n") + "\n\n".join(self.data[key])
+            self.data.pop(key)
+            break
+
         for key in sorted(self.data):
-            # print(self.data[key])
             self.data[key].sort()
-            # print(self.data[key])
             s2 = s2 + ("\n\n" if s2 == "" else "\n\n---\n\n") + "\n\n".join(self.data[key])
 
         s2 = s2.lstrip("\n")
