@@ -19,7 +19,7 @@ def bookmark_listhandler(list):
         else:
             bookmark_listhandler(message)
 
-pdf_path = "D:\\dl-nut\\我的坚果云\\[7-6]七宝\\人类性幻想-B·卡尔-201108"
+pdf_path = "D:\\dl-nut\\我的坚果云\\XXX-B·卡尔-201108"
 with open(pdf_path + '.pdf', 'rb') as f:
     pdf = pdf_read(f)
     #检索文档中存在的文本大纲,返回的对象是一个嵌套的列表
