@@ -87,6 +87,8 @@ celerybeat-schedule
 venv/
 ENV/
 
+_backup
+
 # Spyder project settings
 .spyderproject
 
